@@ -7,10 +7,8 @@ import IconAnt from 'react-native-vector-icons/Ionicons';
 import styles from './style';
 import CustomButton from '../../../components/customButton';
 import {Dimen} from '../../../utils/helper';
-import CustomHeader from '../../../components/customPageHeader';
-import Constants from '../../../utils/constants';
 
-export default function VerifyCode(props) {
+export default function CreatePassword(props) {
   const [timer, setTimer] = React.useState(9);
   React.useEffect(() => {
     const interval = setTimeout(() => setTimer(timer - 1), 1000);
@@ -20,10 +18,6 @@ export default function VerifyCode(props) {
   });
   return (
     <View style={styles.container}>
-      <CustomHeader
-        props={props}
-        headerText={Constants.headerText.ForgotPassword}
-      />
       <View style={{marginTop: 100, marginBottom: 40}}>
         <Text style={{color: 'black'}}>
           Code has been sent to {props.route.params.value}

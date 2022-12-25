@@ -7,6 +7,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 10,
   },
+  headerContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    alignSelf: 'flex-start',
+  },
+  headerText: {
+    color: 'black',
+    marginLeft: 20,
+    fontSize: 20,
+    fontWeight: '500',
+  },
   imgStyle: {width: '70%', height: '40%', marginTop: 20},
   descText: {marginTop: 20, fontSize: 17, color: 'black'},
   contactContainer: {

@@ -8,6 +8,7 @@ import styles from './style';
 import CustomButton from '../../../components/customButton';
 import {Dimen} from '../../../utils/helper';
 import Constants from '../../../utils/constants';
+import CustomHeader from '../../../components/customPageHeader';
 
 export default function ForgotPassword(props) {
   const [viaMethod, setViaMethod] = React.useState(0);
@@ -17,18 +18,10 @@ export default function ForgotPassword(props) {
   };
   return (
     <View style={styles.container}>
-      <View style={styles.headerContainer}>
-        <Icon
-          name="keyboard-backspace"
-          color={'black'}
-          size={25}
-          style={{alignSelf: 'flex-start'}}
-          onPress={() => {
-            props.navigation.goBack();
-          }}
-        />
-        <Text style={styles.headerText}>Forgot Password</Text>
-      </View>
+      <CustomHeader
+        props={props}
+        headerText={Constants.headerText.ForgotPassword}
+      />
       <Image source={main} style={styles.imgStyle} resizeMode="contain" />
       <Text style={styles.descText}>
         Select which contact details should we use to reset your password

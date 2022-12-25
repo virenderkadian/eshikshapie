@@ -21,6 +21,10 @@ export default function LoginWithPass(props) {
     email: '',
     password: '',
   });
+
+  const redirectLogin = () => {
+    props.navigation.navigate(Constants.navigatorsName.DashBoard);
+  };
   return (
     <View style={styles.container}>
       <KeyboardAvoidingView style={styles.loginContainer}>
@@ -39,6 +43,7 @@ export default function LoginWithPass(props) {
         <CustomButton
           onPress={() => {
             console.log(form);
+            redirectLogin();
           }}
           text={'Sign in'}
         />

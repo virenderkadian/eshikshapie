@@ -1,15 +1,24 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
-
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import WelcomeLogin from '../main-component/auth/welcomeLogin';
 import LoginWithPass from '../main-component/auth/loginWithPass';
 import ForgotPassword from '../main-component/auth/forgotPassword';
 import AuthLoading from '../main-component/auth/authLoading';
 import HomeScreen from '../main-component/dashboard/home';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import Feather from 'react-native-vector-icons/Feather';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 import Constants from '../utils/constants';
 import CreateAccount from '../main-component/auth/createAccount';
 import VerifyCode from '../main-component/auth/verifyCode';
+import MyCourse from '../main-component/dashboard/myCourse';
+import Inbox from '../main-component/dashboard/inbox';
+import Profile from '../main-component/dashboard/profile';
+import Transaction from '../main-component/dashboard/transaction';
+import {Animated, StyleSheet} from 'react-native';
 const Stack = createStackNavigator();
+const DashBoardBottomNavigation = createBottomTabNavigator();
 
 export const navigationRef = React.createRef();
 
@@ -46,13 +55,74 @@ function OnBoard() {
 }
 function DashBoard() {
   return (
-    <Stack.Navigator
-      screenOptions={{
+    <DashBoardBottomNavigation.Navigator
+      screenOptions={({route}) => ({
+        tabBarIcon: ({focused, color, size}) => {
+          let iconName;
+
+          if (route.name === 'HomeScreen') {
+            iconName = 'home';
+            return (
+              <AntDesign
+                name={iconName}
+                size={size}
+                color={color}
+                style={{transform: [{scale: focused ? 1.1 : 0.8}]}}
+              />
+            );
+          } else if (route.name === 'MyCourse') {
+            iconName = 'md-reader-outline';
+          } else if (route.name === 'Inbox') {
+            iconName = 'message1';
+            return (
+              <AntDesign
+                name={iconName}
+                size={size}
+                color={color}
+                style={{transform: [{scale: focused ? 1.1 : 0.8}]}}
+              />
+            );
+          } else if (route.name === 'Transaction') {
+            iconName = 'shopping-cart';
+            return (
+              <Feather
+                name={iconName}
+                size={size}
+                color={color}
+                style={{transform: [{scale: focused ? 1.1 : 0.8}]}}
+              />
+            );
+          } else if (route.name === 'Profile') {
+            iconName = 'md-person';
+          }
+
+          return (
+            <Ionicons
+              name={iconName}
+              size={size}
+              color={color}
+              style={{transform: [{scale: focused ? 1.1 : 0.8}]}}
+            />
+          );
+        },
+        tabBarActiveTintColor: Constants.colorCodes.themeBlue,
+        tabBarInactiveTintColor: 'gray',
+        // tabBarActiveBackgroundColor: 'black',
         headerShown: false,
-      }}
-      initialRouteName="Home">
-      <Stack.Screen name="Home" component={HomeScreen} />
-    </Stack.Navigator>
+      })}>
+      <DashBoardBottomNavigation.Screen
+        name="HomeScreen"
+        component={HomeScreen}
+      />
+      <DashBoardBottomNavigation.Screen name="MyCourse" component={MyCourse} />
+      <DashBoardBottomNavigation.Screen name="Inbox" component={Inbox} />
+
+      <DashBoardBottomNavigation.Screen
+        name="Transaction"
+        component={Transaction}
+      />
+      <DashBoardBottomNavigation.Screen name="Profile" component={Profile} />
+    </DashBoardBottomNavigation.Navigator>
   );
 }
 

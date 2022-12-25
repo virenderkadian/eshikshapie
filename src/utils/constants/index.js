@@ -11,5 +11,11 @@ const Constants = {
     DashBoard: 'DashBoard',
     OnBoard: 'OnBoard',
   },
+  headerText: {
+    ForgotPassword: 'Forgot Password',
+  },
+  colorCodes: {
+    themeBlue: '#3E5DEE',
+  },
 };
 export default Constants;
