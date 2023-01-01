@@ -232,9 +232,9 @@ const Carousal = ({data}) => {
           })}
         </View>
       </View>
-      <Text style={{color: 'red'}}>
+      {/* <Text style={{color: 'red'}}>
         {currentIndex + 1} / {data.length}
-      </Text>
+      </Text> */}
     </>
   );
 };
