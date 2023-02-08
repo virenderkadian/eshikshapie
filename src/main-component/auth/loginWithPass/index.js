@@ -23,7 +23,7 @@ export default function LoginWithPass(props) {
   });
 
   const redirectLogin = () => {
-    props.navigation.navigate(Constants.navigatorsName.DashBoard);
+    props.navigation.replace(Constants.navigatorsName.DashBoard);
   };
   return (
     <View style={styles.container}>

@@ -10,6 +10,12 @@ import {Searchbar} from 'react-native-paper';
 import Filter from '../../../assets/filter.png';
 import BgImg from '../../../assets/bg.jpeg';
 import styles from './styles';
+import {
+  CARO_DATA,
+  MentorData,
+  PopularCoursesData,
+} from '../../../utils/dummydata/data';
+import {CourseList} from '../../../components/courses';
 
 export default function HomeScreen({navigation}) {
   return (
@@ -18,7 +24,6 @@ export default function HomeScreen({navigation}) {
         <ScrollView>
           <Header />
           <Search />
-
           <Carousal data={CARO_DATA} />
           <TopMentors data={MentorData} />
           <PopularCourses data={PopularCoursesData} />
@@ -241,136 +246,3 @@ const PopularCourses = ({data}) => {
     </View>
   );
 };
-
-const CourseList = ({data}) => {
-  return <View></View>;
-};
-
-const CARO_DATA = [
-  {
-    text1: '40% OFF ',
-    text2: "Today's Special",
-    text3: '40%',
-    text4: 'Get a discount for every course order!',
-    text5: 'Only valid for today!',
-  },
-  {
-    text1: '40% OFF ',
-    text2: "Today's Special",
-    text3: '40%',
-    text4: 'Get a discount for every course order!',
-    text5: 'Only valid for today!',
-  },
-  {
-    text1: '40% OFF ',
-    text2: "Today's Special",
-    text3: '40%',
-    text4: 'Get a discount for every course order!',
-    text5: 'Only valid for today!',
-  },
-  {
-    text1: '40% OFF ',
-    text2: "Today's Special",
-    text3: '40%',
-    text4: 'Get a discount for every course order!',
-    text5: 'Only valid for today!',
-  },
-];
-
-const MentorData = [
-  {id: '1', image: require('../../../assets/mentorMale01.jpg'), name: 'Jacob'},
-  {
-    id: '2',
-    image: require('../../../assets/mentorFemale01.jpg'),
-    name: 'Claire',
-  },
-  {id: '3', image: require('../../../assets/mentorMale02.jpg'), name: 'Prince'},
-  {id: '4', image: require('../../../assets/mentorMale03.jpg'), name: 'Wade'},
-  {
-    id: '5',
-    image: require('../../../assets/mentorFemale02.jpg'),
-    name: 'Katherine',
-  },
-];
-const PopularCoursesData = [
-  {
-    id: 1,
-    courseCat: '3D Design',
-    title: '3D Design Illustration',
-    price: 80,
-    discount: 40,
-    rating: 4.8,
-    image: '',
-    coursePopularity: 8298,
-  },
-  {
-    id: 2,
-    courseCat: 'Entrepeneurship',
-    title: 'Digital Entrepeneurship',
-    price: 39,
-    discountedPrice: 0,
-    rating: 4.9,
-    image: '',
-    coursePopularity: 6168,
-  },
-  {
-    id: 3,
-    courseCat: 'Business',
-    title: 'CRM Business Management',
-    price: 80,
-    discountedPrice: 48,
-    rating: 4.8,
-    image: '',
-    coursePopularity: 8298,
-  },
-  {
-    id: 4,
-    courseCat: 'UI/UX Design',
-    title: 'Learn UX Personna',
-    price: 80,
-    discountedPrice: 48,
-    rating: 4.8,
-    image: '',
-    coursePopularity: 8298,
-  },
-  {
-    id: 5,
-    courseCat: 'Programming',
-    title: 'Full Stck Web Development',
-    price: 48,
-    discountedPrice: 0,
-    rating: 4.8,
-    image: '',
-    coursePopularity: 10298,
-  },
-  {
-    id: 6,
-    courseCat: '3D Design',
-    title: '3D Characters Illustration',
-    price: 48,
-    discountedPrice: 0,
-    rating: 4.8,
-    image: '',
-    coursePopularity: 9432,
-  },
-  {
-    id: 7,
-    courseCat: 'Technology',
-    title: 'WordPress Website',
-    price: 40,
-    discountedPrice: 0,
-    rating: 4.8,
-    image: '',
-    coursePopularity: 4298,
-  },
-  {
-    id: 8,
-    courseCat: 'Programming',
-    title: 'React Native App Development',
-    price: 180,
-    discountedPrice: 40,
-    rating: 4.8,
-    image: '',
-    coursePopularity: 18298,
-  },
-];

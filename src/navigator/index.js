@@ -16,8 +16,9 @@ import MyCourse from '../main-component/dashboard/myCourse';
 import Inbox from '../main-component/dashboard/inbox';
 import Profile from '../main-component/dashboard/profile';
 import Transaction from '../main-component/dashboard/transaction';
-import {Animated, StyleSheet} from 'react-native';
+
 const Stack = createStackNavigator();
+const DashStack = createStackNavigator();
 const DashBoardBottomNavigation = createBottomTabNavigator();
 
 export const navigationRef = React.createRef();
@@ -53,7 +54,24 @@ function OnBoard() {
     </Stack.Navigator>
   );
 }
+
 function DashBoard() {
+  return (
+    <DashStack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}
+      initialRouteName="BottomBar">
+      <DashStack.Screen
+        name="BottomBar"
+        component={BottomBar}
+        options={{headerShown: false}}
+      />
+    </DashStack.Navigator>
+  );
+}
+
+function BottomBar() {
   return (
     <DashBoardBottomNavigation.Navigator
       screenOptions={({route}) => ({
@@ -107,7 +125,6 @@ function DashBoard() {
         },
         tabBarActiveTintColor: Constants.colorCodes.themeBlue,
         tabBarInactiveTintColor: 'gray',
-        // tabBarActiveBackgroundColor: 'black',
         headerShown: false,
       })}>
       <DashBoardBottomNavigation.Screen
