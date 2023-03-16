@@ -193,12 +193,10 @@ const CourseListView = ({data}) => {
     );
   };
   return (
-    <View>
-      <FlatList
-        style={{width: Dimen.Width}}
-        data={data}
-        renderItem={data => RenderItem(data)}
-      />
-    </View>
+    <FlatList
+      style={{width: Dimen.Width, flex: 1}}
+      data={data}
+      renderItem={data => RenderItem(data)}
+    />
   );
 };

@@ -26,54 +26,56 @@ export default function ForgotPassword(props) {
       <Text style={styles.descText}>
         Select which contact details should we use to reset your password
       </Text>
-      <TouchableOpacity
-        onPress={() => setViaMethod(1)}
-        style={[
-          styles.contactContainer,
-          {borderColor: viaMethod === 1 ? '#3E5DEE' : '#F2F2F2'},
-        ]}>
-        <View style={styles.contactIconContainer}>
-          <IconAnt
-            name="ios-chatbubble-ellipses-sharp"
-            size={25}
-            color="#3E5DEE"
-          />
-        </View>
-        <View style={styles.contactTextContainer}>
-          <Text style={{color: 'black'}}>via SMS:</Text>
-          <Text style={{color: 'black', fontWeight: '700'}}>
-            {contacts.mobile}
-          </Text>
-        </View>
-      </TouchableOpacity>
-      <TouchableOpacity
-        onPress={() => setViaMethod(2)}
-        style={[
-          styles.contactContainer,
-          {borderColor: viaMethod === 2 ? '#3E5DEE' : '#F2F2F2'},
-        ]}>
-        <View style={styles.contactIconContainer}>
-          <Icon name="email" size={25} color="#3E5DEE" />
-        </View>
-        <View style={styles.contactTextContainer}>
-          <Text style={{color: 'black'}}>via Email:</Text>
-          <Text style={{color: 'black', fontWeight: '700'}}>
-            {contacts.email}
-          </Text>
-        </View>
-      </TouchableOpacity>
-      <CustomButton
-        style={{width: Dimen.Width - 30}}
-        text={'Continue'}
-        onPress={() => {
-          if (viaMethod !== 0) {
-            props.navigation.navigate(Constants.routeName.verifyCode, {
-              via: viaMethod === 1 ? 'mobile' : 'email',
-              value: viaMethod === 1 ? contacts.mobile : contacts.email,
-            });
-          }
-        }}
-      />
+      <View style={{width: '100%', paddingHorizontal: 10}}>
+        <TouchableOpacity
+          onPress={() => setViaMethod(1)}
+          style={[
+            styles.contactContainer,
+            {borderColor: viaMethod === 1 ? '#3E5DEE' : '#F2F2F2'},
+          ]}>
+          <View style={styles.contactIconContainer}>
+            <IconAnt
+              name="ios-chatbubble-ellipses-sharp"
+              size={25}
+              color="#3E5DEE"
+            />
+          </View>
+          <View style={styles.contactTextContainer}>
+            <Text style={{color: 'black'}}>via SMS:</Text>
+            <Text style={{color: 'black', fontWeight: '700'}}>
+              {contacts.mobile}
+            </Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => setViaMethod(2)}
+          style={[
+            styles.contactContainer,
+            {borderColor: viaMethod === 2 ? '#3E5DEE' : '#F2F2F2'},
+          ]}>
+          <View style={styles.contactIconContainer}>
+            <Icon name="email" size={25} color="#3E5DEE" />
+          </View>
+          <View style={styles.contactTextContainer}>
+            <Text style={{color: 'black'}}>via Email:</Text>
+            <Text style={{color: 'black', fontWeight: '700'}}>
+              {contacts.email}
+            </Text>
+          </View>
+        </TouchableOpacity>
+        <CustomButton
+          style={{}}
+          text={'Continue'}
+          onPress={() => {
+            if (viaMethod !== 0) {
+              props.navigation.navigate(Constants.routeName.verifyCode, {
+                via: viaMethod === 1 ? 'mobile' : 'email',
+                value: viaMethod === 1 ? contacts.mobile : contacts.email,
+              });
+            }
+          }}
+        />
+      </View>
     </View>
   );
 }

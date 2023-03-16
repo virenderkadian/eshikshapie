@@ -1,9 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {Image, Text, TouchableOpacity, View} from 'react-native';
-import main from '../../../assets/main.jpg';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import IconAnt from 'react-native-vector-icons/Ionicons';
 import styles from './style';
 import CustomButton from '../../../components/customButton';
 import {Dimen} from '../../../utils/helper';

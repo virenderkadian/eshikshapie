@@ -5,6 +5,10 @@ const Constants = {
     createAccount: 'createAccount',
     forgotPassword: 'forgotPassword',
     verifyCode: 'verifyCode',
+    mostPopularCourse: 'mostPopularCourse',
+    Notifications: 'Notifications',
+    Bookmarks: 'Bookmarks',
+    TopMentors: 'TopMentors',
   },
   navigatorsName: {
     AuthLoading: 'AuthLoading',

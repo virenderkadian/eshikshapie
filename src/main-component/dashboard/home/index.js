@@ -16,6 +16,8 @@ import {
   PopularCoursesData,
 } from '../../../utils/dummydata/data';
 import {CourseList} from '../../../components/courses';
+import {useNavigation} from '@react-navigation/native';
+import Constants from '../../../utils/constants';
 
 export default function HomeScreen({navigation}) {
   return (
@@ -34,6 +36,7 @@ export default function HomeScreen({navigation}) {
 }
 
 const Header = () => {
+  const navigation = useNavigation();
   return (
     <View style={styles.headerContainer}>
       <View style={styles.headerLeft}>
@@ -50,8 +53,18 @@ const Header = () => {
         </View>
       </View>
       <View style={styles.headerRight}>
-        <Icon name="bell" color="black" size={20} />
-        <IonIcon name="bookmarks-outline" color="black" size={20} />
+        <Icon
+          name="bell"
+          color="black"
+          size={20}
+          onPress={() => navigation.navigate(Constants.routeName.Notifications)}
+        />
+        <IonIcon
+          name="bookmarks-outline"
+          color="black"
+          size={20}
+          onPress={() => navigation.navigate(Constants.routeName.Bookmarks)}
+        />
       </View>
     </View>
   );
@@ -174,6 +187,7 @@ const Carousal = ({data}) => {
   );
 };
 const TopMentors = ({data}) => {
+  const navigation = useNavigation();
   return (
     <View style={{marginTop: 20, width: '100%'}}>
       <View
@@ -185,7 +199,9 @@ const TopMentors = ({data}) => {
         <Text style={{fontSize: 20, fontWeight: '500', color: 'black'}}>
           Top Mentors
         </Text>
-        <Text style={{fontSize: 17, fontWeight: '500', color: 'blue'}}>
+        <Text
+          style={{fontSize: 17, fontWeight: '500', color: 'blue'}}
+          onPress={() => navigation.navigate(Constants.routeName.TopMentors)}>
           See All
         </Text>
       </View>
@@ -226,7 +242,8 @@ const TopMentors = ({data}) => {
     </View>
   );
 };
-const PopularCourses = ({data}) => {
+export const PopularCourses = ({data}) => {
+  const navigation = useNavigation();
   return (
     <View style={{marginTop: 20}}>
       <View
@@ -238,7 +255,11 @@ const PopularCourses = ({data}) => {
         <Text style={{fontSize: 20, fontWeight: '500', color: 'black'}}>
           Most Popular Courses
         </Text>
-        <Text style={{fontSize: 17, fontWeight: '500', color: 'blue'}}>
+        <Text
+          style={{fontSize: 17, fontWeight: '500', color: 'blue'}}
+          onPress={() =>
+            navigation.navigate(Constants.routeName.mostPopularCourse)
+          }>
           See All
         </Text>
       </View>

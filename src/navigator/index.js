@@ -16,6 +16,10 @@ import MyCourse from '../main-component/dashboard/myCourse';
 import Inbox from '../main-component/dashboard/inbox';
 import Profile from '../main-component/dashboard/profile';
 import Transaction from '../main-component/dashboard/transaction';
+import MostPopularCourse from '../main-component/dashboard/popularCourses';
+import TopMentors from '../main-component/dashboard/TopMentors';
+import Notifications from '../main-component/dashboard/Notifications';
+import Bookmarks from '../main-component/dashboard/Bookmarks';
 
 const Stack = createStackNavigator();
 const DashStack = createStackNavigator();
@@ -56,6 +60,7 @@ function OnBoard() {
 }
 
 function DashBoard() {
+  const Routes = Constants.routeName;
   return (
     <DashStack.Navigator
       screenOptions={{
@@ -66,6 +71,13 @@ function DashBoard() {
         name="BottomBar"
         component={BottomBar}
         options={{headerShown: false}}
+      />
+      <DashStack.Screen name={Routes.TopMentors} component={TopMentors} />
+      <DashStack.Screen name={Routes.Notifications} component={Notifications} />
+      <DashStack.Screen name={Routes.Bookmarks} component={Bookmarks} />
+      <DashStack.Screen
+        name={Routes.mostPopularCourse}
+        component={MostPopularCourse}
       />
     </DashStack.Navigator>
   );
