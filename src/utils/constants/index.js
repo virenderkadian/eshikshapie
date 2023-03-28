@@ -9,6 +9,7 @@ const Constants = {
     Notifications: 'Notifications',
     Bookmarks: 'Bookmarks',
     TopMentors: 'TopMentors',
+    CourseDetails: 'CourseDetails',
   },
   navigatorsName: {
     AuthLoading: 'AuthLoading',

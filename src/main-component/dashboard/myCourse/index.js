@@ -4,11 +4,12 @@ import CustomHeader from '../../../components/customPageHeader';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import {NavigationContainer} from '@react-navigation/native';
 import Constants from '../../../utils/constants';
+import useThemeColors from '../../../utils/customHooks/useThemeColors';
 export default function MyCourse({navigation}) {
   return (
-    <View style={{flex: 1, backgroundColor: 'white'}}>
+    <View style={{flex: 1}}>
       <CustomHeader headerText={'My Courses'} disbaleBack search threedots />
-      <View style={{paddingHorizontal: 10, flex: 1}}>
+      <View style={{flex: 1}}>
         <MyCoursesTabs />
       </View>
     </View>
@@ -18,12 +19,16 @@ export default function MyCourse({navigation}) {
 const Tab = createMaterialTopTabNavigator();
 
 function MyCoursesTabs() {
+  const colors = useThemeColors();
   return (
     <NavigationContainer independent={true}>
       <Tab.Navigator
+        sceneContainerStyle={{backgroundColor: colors.screenBackground}}
         screenOptions={{
-          tabBarActiveTintColor: Constants.colorCodes.themeBlue,
+          tabBarActiveTintColor: colors.link,
           tabBarInactiveTintColor: 'grey',
+          tabBarStyle: {backgroundColor: colors.screenBackground},
+          tabBarAllowFontScaling: true,
         }}>
         <Tab.Screen name="Ongoing" component={OngoingCourses} />
         <Tab.Screen name="Completed" component={CompletedCourses} />

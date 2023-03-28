@@ -1,7 +1,9 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
+import useThemeColors from '../../utils/customHooks/useThemeColors';
 
 export default function LineWithText({text}) {
+  const colors = useThemeColors();
   return (
     <View style={{flexDirection: 'row', paddingVertical: 10}}>
       <View
@@ -17,7 +19,7 @@ export default function LineWithText({text}) {
           alignSelf: 'center',
           paddingHorizontal: 10,
           fontSize: 20,
-          color: 'black',
+          color: colors.text,
         }}>
         {text}
       </Text>

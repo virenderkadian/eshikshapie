@@ -15,7 +15,6 @@ export const styles = StyleSheet.create({
     width: Dimen.Width * 0.9,
     alignSelf: 'center',
     margin: 'auto',
-    backgroundColor: 'white',
     padding: 15,
     marginVertical: 10,
     borderRadius: 10,

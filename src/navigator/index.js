@@ -20,6 +20,8 @@ import MostPopularCourse from '../main-component/dashboard/popularCourses';
 import TopMentors from '../main-component/dashboard/TopMentors';
 import Notifications from '../main-component/dashboard/Notifications';
 import Bookmarks from '../main-component/dashboard/Bookmarks';
+import CourseDetails from '../main-component/dashboard/courseDetail';
+import useThemeColors from '../utils/customHooks/useThemeColors';
 
 const Stack = createStackNavigator();
 const DashStack = createStackNavigator();
@@ -44,10 +46,12 @@ function AppNavigator() {
 
 function OnBoard() {
   const Routes = Constants.routeName;
+  const colors = useThemeColors();
   return (
     <Stack.Navigator
       screenOptions={{
         headerShown: false,
+        cardStyle: {backgroundColor: colors.screenBackground},
       }}
       initialRouteName={Routes.WelcomeLogin}>
       <Stack.Screen name={Routes.WelcomeLogin} component={WelcomeLogin} />
@@ -61,10 +65,12 @@ function OnBoard() {
 
 function DashBoard() {
   const Routes = Constants.routeName;
+  const colors = useThemeColors();
   return (
     <DashStack.Navigator
       screenOptions={{
         headerShown: false,
+        cardStyle: {backgroundColor: colors.screenBackground},
       }}
       initialRouteName="BottomBar">
       <DashStack.Screen
@@ -72,7 +78,9 @@ function DashBoard() {
         component={BottomBar}
         options={{headerShown: false}}
       />
+
       <DashStack.Screen name={Routes.TopMentors} component={TopMentors} />
+      <DashStack.Screen name={Routes.CourseDetails} component={CourseDetails} />
       <DashStack.Screen name={Routes.Notifications} component={Notifications} />
       <DashStack.Screen name={Routes.Bookmarks} component={Bookmarks} />
       <DashStack.Screen
@@ -84,13 +92,15 @@ function DashBoard() {
 }
 
 function BottomBar() {
+  const colors = useThemeColors();
   return (
     <DashBoardBottomNavigation.Navigator
+      sceneContainerStyle={{backgroundColor: colors.screenBackground}}
       screenOptions={({route}) => ({
         tabBarIcon: ({focused, color, size}) => {
           let iconName;
 
-          if (route.name === 'HomeScreen') {
+          if (route.name === 'Home') {
             iconName = 'home';
             return (
               <AntDesign
@@ -135,14 +145,19 @@ function BottomBar() {
             />
           );
         },
-        tabBarActiveTintColor: Constants.colorCodes.themeBlue,
+        tabBarStyle: {
+          backgroundColor: colors.background,
+          borderTopLeftRadius: 10,
+          borderTopRightRadius: 10,
+          borderColor: 'grey',
+          borderLeftWidth: 0.5,
+          borderRightWidth: 0.5,
+        },
+        tabBarActiveTintColor: colors.selectedTabColor,
         tabBarInactiveTintColor: 'gray',
         headerShown: false,
       })}>
-      <DashBoardBottomNavigation.Screen
-        name="HomeScreen"
-        component={HomeScreen}
-      />
+      <DashBoardBottomNavigation.Screen name="Home" component={HomeScreen} />
       <DashBoardBottomNavigation.Screen name="MyCourse" component={MyCourse} />
       <DashBoardBottomNavigation.Screen name="Inbox" component={Inbox} />
 

@@ -1,11 +1,15 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable react/react-in-jsx-scope */
 import {useNavigation} from '@react-navigation/native';
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {Image, StyleSheet, Text, useColorScheme, View} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import main from '../../assets/logo.png';
+import newLogo from '../../assets/newLogo.png';
+import darkNewLogo from '../../assets/darkNewLogo.png';
+import useThemeColors from '../../utils/customHooks/useThemeColors';
 const CustomHeader = props => {
+  const colors = useThemeColors();
+  const theme = useColorScheme();
   const navigation = useNavigation();
   return (
     <View style={[styles.headerContainer]}>
@@ -13,14 +17,14 @@ const CustomHeader = props => {
         {!props.disbaleBack ? (
           <Icon
             name="keyboard-backspace"
-            color={'black'}
+            color={colors.text}
             size={25}
             style={{alignSelf: 'flex-start'}}
             onPress={() => navigation.goBack()}
           />
         ) : (
           <Image
-            source={main}
+            source={theme == 'dark' ? darkNewLogo : newLogo}
             style={{
               width: 30,
               height: 30,
@@ -29,17 +33,19 @@ const CustomHeader = props => {
             }}
           />
         )}
-        <Text style={styles.headerTextStyle}>{props.headerText}</Text>
+        <Text style={[styles.headerTextStyle, {color: colors.text}]}>
+          {props.headerText}
+        </Text>
       </View>
       <View style={{flexDirection: 'row'}}>
         {props.search && (
-          <Ionicons name="search-outline" size={25} color={'black'} />
+          <Ionicons name="search-outline" size={25} color={colors.text} />
         )}
         {props.threedots && (
           <Icon
             name="dots-horizontal-circle-outline"
             size={25}
-            color={'black'}
+            color={colors.text}
             style={{marginLeft: 10}}
           />
         )}
@@ -60,7 +66,6 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
   },
   headerTextStyle: {
-    color: 'black',
     marginLeft: 20,
     fontSize: 20,
     fontWeight: '500',

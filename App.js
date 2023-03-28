@@ -8,7 +8,7 @@
  */
 
 import React from 'react';
-import {SafeAreaView, StatusBar, useColorScheme} from 'react-native';
+import {Platform, SafeAreaView, StatusBar, useColorScheme} from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {NavigationContainer} from '@react-navigation/native';
 import AppNavigator, {navigationRef} from './src/navigator';
@@ -17,16 +17,16 @@ import AppNavigator, {navigationRef} from './src/navigator';
  * LTI update could not be added via codemod */
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
-
+  console.log(isDarkMode, Platform.OS == 'ios' ? 'ios' : 'android');
   const backgroundStyle = {
-    backgroundColor: !isDarkMode ? Colors.darker : Colors.lighter,
+    backgroundColor: isDarkMode ? '#212352' : Colors.lighter,
   };
 
   return (
     <NavigationContainer ref={navigationRef}>
       <SafeAreaView style={[backgroundStyle, {flex: 1}]}>
         <StatusBar
-          barStyle={!isDarkMode ? 'light-content' : 'dark-content'}
+          barStyle={isDarkMode ? 'light-content' : 'dark-content'}
           backgroundColor={backgroundStyle.backgroundColor}
         />
         <AppNavigator />

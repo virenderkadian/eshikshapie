@@ -15,8 +15,10 @@ import LineWithText from '../../../components/textbtwLine';
 import CustomInput from '../../../components/customInput';
 import Constants from '../../../utils/constants';
 import CustomButton from '../../../components/customButton';
+import useThemeColors from '../../../utils/customHooks/useThemeColors';
 
 export default function LoginWithPass(props) {
+  const colors = useThemeColors();
   const [form, setForm] = React.useState({
     email: '',
     password: '',
@@ -28,7 +30,9 @@ export default function LoginWithPass(props) {
   return (
     <View style={styles.container}>
       <KeyboardAvoidingView style={styles.loginContainer}>
-        <Text style={styles.welcomeText}>Login to your Account</Text>
+        <Text style={[styles.welcomeText, {color: colors.text}]}>
+          Login to your Account
+        </Text>
         <CustomInput
           type="email"
           value={form.email}
@@ -61,10 +65,18 @@ export default function LoginWithPass(props) {
         </Text>
         <LineWithText text={'or continue with'} />
         <View style={styles.socialView}>
-          <TouchableOpacity style={styles.socialContainer}>
+          <TouchableOpacity
+            style={[
+              styles.socialContainer,
+              {backgroundColor: colors.background},
+            ]}>
             <Icon name="facebook" size={30} color="#0165E1" />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.socialContainer}>
+          <TouchableOpacity
+            style={[
+              styles.socialContainer,
+              {backgroundColor: colors.background},
+            ]}>
             <Image source={googleIcon} style={{width: 30, height: 30}} />
           </TouchableOpacity>
         </View>
@@ -73,10 +85,10 @@ export default function LoginWithPass(props) {
             alignItems: 'center',
             marginVertical: 20,
           }}>
-          <Text style={{color: 'black'}}>
+          <Text style={{color: colors.text}}>
             Dont have an Account?{' '}
             <Text
-              style={{color: '#3E5DEE'}}
+              style={{color: colors.link}}
               onPress={() =>
                 props.navigation.navigate(Constants.routeName.createAccount)
               }>

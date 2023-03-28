@@ -2,10 +2,8 @@ import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'white',
     flex: 1,
     alignItems: 'center',
-    // justifyContent: 'center',
   },
   loginContainer: {width: '90%', paddingHorizontal: 16, paddingTop: 10},
   welcomeText: {

@@ -6,8 +6,10 @@ import CustomButton from '../../../components/customButton';
 import {Dimen} from '../../../utils/helper';
 import CustomHeader from '../../../components/customPageHeader';
 import Constants from '../../../utils/constants';
+import useThemeColors from '../../../utils/customHooks/useThemeColors';
 
 export default function VerifyCode(props) {
+  const colors = useThemeColors();
   const [timer, setTimer] = React.useState(9);
   React.useEffect(() => {
     const interval = setTimeout(() => setTimer(timer - 1), 1000);
@@ -22,15 +24,16 @@ export default function VerifyCode(props) {
         headerText={Constants.headerText.ForgotPassword}
       />
       <View style={{marginTop: 100, marginBottom: 40}}>
-        <Text style={{color: 'black'}}>
+        <Text style={{color: colors.text}}>
           Code has been sent to {props.route.params.value}
         </Text>
       </View>
       {timer <= 0 ? (
-        <Text style={{color: '#3E5DEE'}}>Resend Code</Text>
+        <Text style={{color: colors.link}}>Resend Code</Text>
       ) : (
-        <Text style={{color: 'black'}}>
-          Resend Code in <Text style={{color: '#3E5DEE'}}>{` ${timer} `}</Text>s
+        <Text style={{color: colors.text}}>
+          Resend Code in{' '}
+          <Text style={{color: colors.link}}>{` ${timer} `}</Text>s
         </Text>
       )}
 

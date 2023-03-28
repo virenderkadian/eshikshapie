@@ -18,27 +18,36 @@ import {
 import {CourseList} from '../../../components/courses';
 import {useNavigation} from '@react-navigation/native';
 import Constants from '../../../utils/constants';
+import useThemeColors from '../../../utils/customHooks/useThemeColors';
 
 export default function HomeScreen({navigation}) {
+  const colors = useThemeColors();
   return (
-    <View style={{flex: 1}}>
-      <View>
-        <ScrollView>
-          <Header />
-          <Search />
-          <Carousal data={CARO_DATA} />
-          <TopMentors data={MentorData} />
-          <PopularCourses data={PopularCoursesData} />
-        </ScrollView>
-      </View>
+    <View
+      style={{
+        flex: 1,
+        backgroundColor: colors.screenBackground,
+        overflow: 'hidden',
+      }}>
+      <Header />
+      <ScrollView
+        style={{backgroundColor: colors.screenBackground}}
+        showsVerticalScrollIndicator={false}>
+        <Search />
+        <Carousal data={CARO_DATA} />
+        <TopMentors data={MentorData} />
+        <PopularCourses data={PopularCoursesData} />
+      </ScrollView>
     </View>
   );
 }
 
 const Header = () => {
+  const colors = useThemeColors();
   const navigation = useNavigation();
   return (
-    <View style={styles.headerContainer}>
+    <View
+      style={[styles.headerContainer, {backgroundColor: colors.background}]}>
       <View style={styles.headerLeft}>
         <View>
           <Image
@@ -49,19 +58,21 @@ const Header = () => {
         </View>
         <View>
           <Text style={{color: 'grey'}}>Good morning 👋🏼</Text>
-          <Text style={styles.userTextStyle}>Deepak Kumar</Text>
+          <Text style={[styles.userTextStyle, {color: colors.text}]}>
+            Deepak Kumar
+          </Text>
         </View>
       </View>
       <View style={styles.headerRight}>
         <Icon
           name="bell"
-          color="black"
+          color={colors.link}
           size={20}
           onPress={() => navigation.navigate(Constants.routeName.Notifications)}
         />
         <IonIcon
           name="bookmarks-outline"
-          color="black"
+          color={colors.link}
           size={20}
           onPress={() => navigation.navigate(Constants.routeName.Bookmarks)}
         />
@@ -74,7 +85,7 @@ const Search = () => {
 
   const onChangeSearch = query => setSearchQuery(query);
   return (
-    <View style={{marginHorizontal: 25, alignContent: 'center'}}>
+    <View style={{marginHorizontal: 25, marginTop: 5, alignContent: 'center'}}>
       <Searchbar
         style={{backgroundColor: '#e2e3e3', borderRadius: 15}}
         placeholder="Search"
@@ -96,6 +107,7 @@ const Search = () => {
 };
 const Carousal = ({data}) => {
   const scrollViewRef = React.useRef(null);
+  const colors = useThemeColors();
   const [currentIndex, setCurrentIndex] = React.useState(0);
   React.useEffect(() => {
     const timer = setTimeout(() => {
@@ -188,6 +200,7 @@ const Carousal = ({data}) => {
 };
 const TopMentors = ({data}) => {
   const navigation = useNavigation();
+  const colors = useThemeColors();
   return (
     <View style={{marginTop: 20, width: '100%'}}>
       <View
@@ -196,11 +209,11 @@ const TopMentors = ({data}) => {
           flexDirection: 'row',
           paddingHorizontal: 20,
         }}>
-        <Text style={{fontSize: 20, fontWeight: '500', color: 'black'}}>
+        <Text style={{fontSize: 20, fontWeight: '500', color: colors.text}}>
           Top Mentors
         </Text>
         <Text
-          style={{fontSize: 17, fontWeight: '500', color: 'blue'}}
+          style={{fontSize: 17, fontWeight: '500', color: colors.link}}
           onPress={() => navigation.navigate(Constants.routeName.TopMentors)}>
           See All
         </Text>
@@ -229,7 +242,7 @@ const TopMentors = ({data}) => {
                   style={{
                     fontWeight: '500',
                     fontSize: 15,
-                    color: 'black',
+                    color: colors.text,
                     marginTop: 7,
                   }}>
                   {item.name}
@@ -244,6 +257,7 @@ const TopMentors = ({data}) => {
 };
 export const PopularCourses = ({data}) => {
   const navigation = useNavigation();
+  const colors = useThemeColors();
   return (
     <View style={{marginTop: 20}}>
       <View
@@ -252,11 +266,11 @@ export const PopularCourses = ({data}) => {
           flexDirection: 'row',
           paddingHorizontal: 20,
         }}>
-        <Text style={{fontSize: 20, fontWeight: '500', color: 'black'}}>
+        <Text style={{fontSize: 20, fontWeight: '500', color: colors.text}}>
           Most Popular Courses
         </Text>
         <Text
-          style={{fontSize: 17, fontWeight: '500', color: 'blue'}}
+          style={{fontSize: 17, fontWeight: '500', color: colors.link}}
           onPress={() =>
             navigation.navigate(Constants.routeName.mostPopularCourse)
           }>

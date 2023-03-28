@@ -3,12 +3,14 @@ import {Dimen} from '../../../utils/helper';
 
 const styles = StyleSheet.create({
   headerContainer: {
-    height: 60,
+    // height: 60,
     width: Dimen.Width,
     paddingHorizontal: 20,
-    marginVertical: 10,
+    paddingBottom: 10,
     flexDirection: 'row',
     justifyContent: 'space-between',
+    borderBottomRightRadius: 20,
+    borderBottomLeftRadius: 20,
   },
   headerLeft: {flexDirection: 'row', flex: 0.8, alignItems: 'center'},
   headerRight: {
@@ -32,7 +34,6 @@ const styles = StyleSheet.create({
     height: Dimen.Width * 0.45,
     width: Dimen.Width - 40,
     marginHorizontal: 20,
-    backgroundColor: 'red',
     overflow: 'hidden',
     borderRadius: 30,
     marginTop: 20,

@@ -7,6 +7,9 @@ import {Colors} from '../../utils/colors';
 import {Dimen} from '../../utils/helper';
 import {styles} from './styles';
 import IonIcon from 'react-native-vector-icons/Ionicons';
+import useThemeColors from '../../utils/customHooks/useThemeColors';
+import {useNavigation} from '@react-navigation/native';
+import Constants from '../../utils/constants';
 
 export const CourseList = ({data}) => {
   const headerData = {
@@ -23,7 +26,6 @@ export const CourseList = ({data}) => {
   };
   const [selectedCat, setSelectedCat] = React.useState(headerData.item);
   const setCat = data => setSelectedCat(data);
-
   return (
     <View>
       <CategoryListName
@@ -38,6 +40,7 @@ export const CourseList = ({data}) => {
 };
 
 const CategoryListName = ({data, setCat, selectedCat, headerData}) => {
+  const colors = useThemeColors();
   const RenderItem = item => {
     return (
       <TouchableOpacity
@@ -61,7 +64,7 @@ const CategoryListName = ({data, setCat, selectedCat, headerData}) => {
           style={{
             color:
               selectedCat?.courseCat !== item.item.courseCat
-                ? Colors.themeBlue
+                ? colors.borderhighlightColor
                 : 'white',
             fontWeight: '500',
           }}>
@@ -90,9 +93,18 @@ const CategoryListName = ({data, setCat, selectedCat, headerData}) => {
 };
 
 const CourseListView = ({data}) => {
+  const navigation = useNavigation();
+  const colors = useThemeColors();
   const RenderItem = item => {
     return (
-      <View key={item.index} style={styles.clListView}>
+      <TouchableOpacity
+        onPress={() =>
+          navigation.navigate(Constants.routeName.CourseDetails, {
+            data: item.item,
+          })
+        }
+        key={item.index}
+        style={[styles.clListView, {backgroundColor: colors.background}]}>
         <View
           style={{
             borderRadius: 10,
@@ -126,13 +138,13 @@ const CourseListView = ({data}) => {
               </Text>
             </View>
             <View>
-              <IonIcon name="bookmarks-outline" color="black" size={20} />
+              <IonIcon name="bookmarks-outline" color={colors.link} size={20} />
             </View>
           </View>
           <View style={{paddingTop: 7}}>
             <Text
               numberOfLines={1}
-              style={{color: 'black', fontSize: 15, fontWeight: '500'}}>
+              style={{color: colors.text, fontSize: 15, fontWeight: '500'}}>
               {item.item.title}
             </Text>
           </View>
@@ -189,7 +201,7 @@ const CourseListView = ({data}) => {
             </Text>
           </View>
         </View>
-      </View>
+      </TouchableOpacity>
     );
   };
   return (
