@@ -12,7 +12,8 @@ const CustomHeader = props => {
   const theme = useColorScheme();
   const navigation = useNavigation();
   return (
-    <View style={[styles.headerContainer]}>
+    <View
+      style={[styles.headerContainer, {backgroundColor: colors.background}]}>
       <View style={styles.headerContainerLeft}>
         {!props.disbaleBack ? (
           <Icon
@@ -58,6 +59,7 @@ const styles = StyleSheet.create({
   headerContainer: {
     paddingHorizontal: 10,
     flexDirection: 'row',
+    paddingBottom: 10,
     justifyContent: 'space-between',
     width: '100%',
   },
